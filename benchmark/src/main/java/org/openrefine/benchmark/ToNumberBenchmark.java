@@ -27,6 +27,7 @@
 
 package org.openrefine.benchmark;
 
+import java.security.SecureRandom;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -61,7 +62,7 @@ public class ToNumberBenchmark {
         String[] args = new String[1];
         String testData;
         String testDataInt;
-        Random rnd = new Random();
+        Random rnd = new SecureRandom();
 
         @Setup(Level.Invocation)
         public void setUp() {
