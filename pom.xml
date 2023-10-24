@@ -125,7 +125,8 @@
     <maven-deploy-plugin.version>3.1.0</maven-deploy-plugin.version>
     <license-plugin.version>2.0.0</license-plugin.version>
     <org-jvnet-localizer-plugin.version>1.31</org-jvnet-localizer-plugin.version>
-  </properties>
+  <versions.java-security-toolkit>1.0.7</versions.java-security-toolkit>
+ </properties>
 
 
   <build>
@@ -396,5 +397,13 @@
        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
      </repository>
   </distributionManagement>
-
+ <dependencyManagement>
+  <dependencies>
+   <dependency>
+    <groupId>io.github.pixee</groupId>
+    <artifactId>java-security-toolkit</artifactId>
+    <version>${versions.java-security-toolkit}</version>
+   </dependency>
+  </dependencies>
+ </dependencyManagement>
 </project>
