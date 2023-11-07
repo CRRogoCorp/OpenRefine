@@ -33,6 +33,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine.model;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -62,7 +63,7 @@ public class Recon implements HasFields {
 
     private static final String WIKIDATA_SCHEMA_SPACE = "http://www.wikidata.org/prop/direct/";
     private static final String WIKIDATA_IDENTIFIER_SPACE = "http://www.wikidata.org/entity/";
-    private static final Random idGenerator = new Random();
+    private static final Random idGenerator = new SecureRandom();
 
     static public enum Judgment {
         @JsonProperty("none")

@@ -27,6 +27,7 @@ package org.openrefine.wikibase.operations;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Writer;
+import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
@@ -238,7 +239,7 @@ public class PerformWikibaseEditsOperation extends EngineDependentOperation {
                 summary = _summary;
             } else {
                 // Generate batch id
-                String batchId = Long.toHexString((new Random()).nextLong()).substring(0, 11);
+                String batchId = Long.toHexString((new SecureRandom()).nextLong()).substring(0, 11);
                 // The following replacement is a fix for: https://github.com/Wikidata/editgroups/issues/4
                 // Because commas and colons are used by Wikibase to separate the auto-generated summaries
                 // from the user-supplied ones, we replace these separators by similar unicode characters to
