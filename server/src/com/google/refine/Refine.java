@@ -33,6 +33,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine;
 
+import io.github.pixee.security.SystemCommand;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -516,11 +517,11 @@ class RefineClient extends JFrame implements ActionListener {
         Runtime rt = Runtime.getRuntime();
 
         if (SystemUtils.IS_OS_WINDOWS) {
-            rt.exec(new String[] { "rundll32 ", "url.dll,FileProtocolHandler ", String.valueOf(uri) });
+            SystemCommand.runCommand(rt, new String[] { "rundll32 ", "url.dll,FileProtocolHandler ", String.valueOf(uri) });
         } else if (SystemUtils.IS_OS_MAC_OSX) {
-            rt.exec(new String[] { "open ", String.valueOf(uri) });
+            SystemCommand.runCommand(rt, new String[] { "open ", String.valueOf(uri) });
         } else if (SystemUtils.IS_OS_LINUX) {
-            rt.exec(new String[] { "xdg-open", String.valueOf(uri) });
+            SystemCommand.runCommand(rt, new String[] { "xdg-open", String.valueOf(uri) });
         } else {
             logger.warn("Java Desktop class not supported on this platform. Please open %s in your browser", uri.toString());
         }
