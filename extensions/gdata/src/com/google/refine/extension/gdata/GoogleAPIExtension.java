@@ -1,6 +1,8 @@
 
 package com.google.refine.extension.gdata;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -91,8 +93,8 @@ abstract public class GoogleAPIExtension {
         StringBuffer sb = new StringBuffer(module.getMountPoint().getMountPoint());
         sb.append("authorized");
 
-        URL thisUrl = new URL(request.getRequestURL().toString());
-        URL authorizedUrl = new URL(thisUrl, sb.toString());
+        URL thisUrl = Urls.create(request.getRequestURL().toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
+        URL authorizedUrl = Urls.create(thisUrl, sb.toString(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
         return authorizedUrl.toExternalForm();
     }
@@ -136,7 +138,7 @@ abstract public class GoogleAPIExtension {
 
     static boolean isSpreadsheetURL(String url) {
         try {
-            return url.contains("spreadsheet") && getSpreadsheetID(new URL(url)) != null;
+            return url.contains("spreadsheet") && getSpreadsheetID(Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS)) != null;
         } catch (MalformedURLException e) {
             return false;
         }
@@ -213,7 +215,7 @@ abstract public class GoogleAPIExtension {
         }
 
         try {
-            urlAsUrl = new URL(url);
+            urlAsUrl = Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             String query = urlAsUrl.getQuery();
             if (query != null) {
 

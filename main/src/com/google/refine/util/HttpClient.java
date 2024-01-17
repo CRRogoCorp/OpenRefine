@@ -27,6 +27,8 @@
 
 package com.google.refine.util;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -248,7 +250,7 @@ public class HttpClient {
         try {
             // Use of URL constructor below is purely to get additional error checking to mimic
             // previous behavior for the tests.
-            new URL(urlString).toURI();
+            Urls.create(urlString, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).toURI();
         } catch (IllegalArgumentException | MalformedURLException | URISyntaxException e) {
             return null;
         }
