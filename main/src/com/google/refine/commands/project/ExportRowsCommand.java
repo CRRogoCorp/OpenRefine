@@ -33,6 +33,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine.commands.project;
 
+import io.github.pixee.security.Newlines;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -101,7 +102,7 @@ public class ExportRowsCommand extends Command {
             if (contentType == null) {
                 contentType = exporter.getContentType();
             }
-            response.setHeader("Content-Type", contentType);
+            response.setHeader("Content-Type", Newlines.stripAll(contentType));
 
             String preview = params.getProperty("preview");
             if (!"true".equals(preview)) {
@@ -109,7 +110,7 @@ public class ExportRowsCommand extends Command {
                 String filename = path.substring(path.lastIndexOf('/') + 1);
                 PercentEscaper escaper = new PercentEscaper("", false);
                 filename = escaper.escape(filename);
-                response.setHeader("Content-Disposition", "attachment; filename=" + filename + "; filename*=utf-8' '" + filename);
+                response.setHeader("Content-Disposition", Newlines.stripAll("attachment; filename=" + filename + "; filename*=utf-8' '" + filename));
             }
 
             if (exporter instanceof WriterExporter) {
