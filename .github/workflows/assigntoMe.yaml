@@ -1,0 +1,27 @@
+name: Assign PRs to CRRogo
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  assign-to-me:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Assign to CRRogo
+      run: |
+        # Check if the PR is opened by pixeebot
+        if [[ "${{ github.event.pull_request.user.login }}" == "pixeebot" ]]; then
+          # Assign the PR to CRRogo
+          echo "Assigning PR to CRRogo..."
+          gh pr edit ${{ github.event.pull_request.number }} --assignee=CRRogo
+        else
+          echo "PR is not opened by pixeebot. No action needed."
+        fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
