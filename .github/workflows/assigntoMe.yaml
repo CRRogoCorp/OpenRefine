@@ -16,7 +16,7 @@ jobs:
     - name: Assign to CRRogo
       run: |
         # Check if the PR is opened by pixeebot
-        if [[ "${{ github.event.pull_request.user.login }}" == "pixeebot" ]]; then
+        if [[ "${{ github.event.pull_request.user.login }}" == "pixeebot[bot]" ]]; then
           # Assign the PR to CRRogo
           echo "Assigning PR to CRRogo..."
           gh pr edit ${{ github.event.pull_request.number }} --assignee=CRRogo
