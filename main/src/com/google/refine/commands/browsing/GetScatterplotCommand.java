@@ -134,12 +134,12 @@ public class GetScatterplotCommand extends Command {
 
         @JsonProperty(ScatterplotFacet.DIM_X)
         public void setDimX(String dim) {
-            dim_x = dim.equals("lin") ? ScatterplotFacet.LIN : ScatterplotFacet.LOG;
+            dim_x = "lin".equals(dim) ? ScatterplotFacet.LIN : ScatterplotFacet.LOG;
         }
 
         @JsonProperty(ScatterplotFacet.DIM_Y)
         public void setDimY(String dim) {
-            dim_y = dim.equals("lin") ? ScatterplotFacet.LIN : ScatterplotFacet.LOG;
+            dim_y = "lin".equals(dim) ? ScatterplotFacet.LIN : ScatterplotFacet.LOG;
         }
 
         // rotation can be set to "none" (a JSON string) in which case it should be ignored

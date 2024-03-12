@@ -27,15 +27,15 @@ public class TimeSinceUnixEpochToDate implements Function {
             } else if (args.length == 2 && args[1] instanceof String) {
                 Object o2 = args[1];
                 String unit = ((String) o2).toLowerCase();
-                if (unit.equals("second")) {
+                if ("second".equals(unit)) {
                     instant = Instant.ofEpochSecond(epoch);
                     date = OffsetDateTime.ofInstant(instant, zoneId);
                     return date;
-                } else if (unit.equals("millisecond")) {
+                } else if ("millisecond".equals(unit)) {
                     instant = Instant.ofEpochMilli(epoch);
                     date = OffsetDateTime.ofInstant(instant, zoneId);
                     return date;
-                } else if (unit.equals("microsecond")) {
+                } else if ("microsecond".equals(unit)) {
                     instant = Instant.ofEpochSecond(epoch / 1000000, epoch % 1000000 * 1000);
                     date = OffsetDateTime.ofInstant(instant, zoneId);
                     return date;

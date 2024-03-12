@@ -55,9 +55,9 @@ public class InnerXml implements Function {
             Object o1 = args[0];
             if (o1 != null && o1 instanceof Element) {
                 Element e1 = (Element) o1;
-                if (mode.equals("xml")) {
+                if ("xml".equals(mode)) {
                     return e1.children().toString();
-                } else if (mode.equals("html")) {
+                } else if ("html".equals(mode)) {
                     return e1.html();
                 } else {
                     // whether XML or HTML is being used.");

@@ -302,14 +302,14 @@ public class Metaphone3 {
      */
     void MetaphAdd(String in)
     {
-    	if(!(in.equals("A") 
+    	if(!("A".equals(in) 
     			&& (m_primary.length() > 0) 
     			&& (m_primary.charAt(m_primary.length() - 1) == 'A')))
     	{
     		m_primary.append(in);
     	}
     	
-    	if(!(in.equals("A") 
+    	if(!("A".equals(in) 
     			&& (m_secondary.length() > 0) 
     			&& (m_secondary.charAt(m_secondary.length() - 1) == 'A')))
     	{
@@ -326,14 +326,14 @@ public class Metaphone3 {
 	 */
 	void MetaphAdd(String main, String alt)
 	{
-    	if(!(main.equals("A") 
+    	if(!("A".equals(main) 
     			&& (m_primary.length() > 0) 
     			&& (m_primary.charAt(m_primary.length() - 1) == 'A')))
     	{
     		m_primary.append(main);
     	}
     	
-    	if(!(alt.equals("A") 
+    	if(!("A".equals(alt) 
     			&& (m_secondary.length() > 0) 
     			&& (m_secondary.charAt(m_secondary.length() - 1) == 'A')))
     	{

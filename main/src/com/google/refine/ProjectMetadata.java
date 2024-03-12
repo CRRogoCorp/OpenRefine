@@ -364,7 +364,7 @@ public class ProjectMetadata {
         Class<? extends ProjectMetadata> metaClass = this.getClass();
         try {
             Field metaField = metaClass.getDeclaredField("_" + metaName);
-            if (metaName.equals("tags")) {
+            if ("tags".equals(metaName)) {
                 metaField.set(this, valueString.split(","));
             } else {
                 metaField.set(this, valueString);

@@ -690,9 +690,9 @@ public class CalendarParser {
         if (len >= 3) {
 
             String suffix = str.substring(len - 2);
-            if (suffix.equalsIgnoreCase("st") || suffix.equalsIgnoreCase("nd")
-                    || suffix.equalsIgnoreCase("rd")
-                    || suffix.equalsIgnoreCase("th")) {
+            if ("st".equalsIgnoreCase(suffix) || "nd".equalsIgnoreCase(suffix)
+                    || "rd".equalsIgnoreCase(suffix)
+                    || "th".equalsIgnoreCase(suffix)) {
                 try {
                     return Integer.parseInt(str.substring(0, len - 2));
                 } catch (NumberFormatException nfe) {
@@ -1031,13 +1031,13 @@ public class CalendarParser {
         if (val == UNSET) {
             final String lToken = token.toLowerCase();
 
-            if (lToken.equals("am")) {
+            if ("am".equals(lToken)) {
                 // don't need to do anything
                 if (DEBUG) {
                     System.err.println("TIME=AM (" + token + ")");
                 }
                 return;
-            } else if (lToken.equals("pm")) {
+            } else if ("pm".equals(lToken)) {
                 if (!state.isHourSet()) {
                     state.setTimePostMeridian(true);
                 } else {
@@ -1053,7 +1053,7 @@ public class CalendarParser {
                 for (String zoneName : zoneNames) {
                     if (token.equalsIgnoreCase(zoneName)) {
                         TimeZone tz = TimeZone.getTimeZone(token);
-                        if (tz.getRawOffset() != 0 || lToken.equals("gmt")) {
+                        if (tz.getRawOffset() != 0 || "gmt".equals(lToken)) {
                             state.setTimeZone(tz);
                             return;
                         }

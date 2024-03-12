@@ -74,7 +74,7 @@ public class SetPreferenceCommand extends Command {
             respondException(response, e);
         }
 
-        if (prefName.equals("userLang")) {
+        if ("userLang".equals(prefName)) {
             LocaleUtils.setLocale(valueString);
         }
     }

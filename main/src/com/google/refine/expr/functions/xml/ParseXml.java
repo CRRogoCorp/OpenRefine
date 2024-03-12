@@ -56,9 +56,9 @@ public class ParseXml implements Function {
         if (args.length == 1) {
             Object o1 = args[0];
             if (o1 != null && o1 instanceof String) {
-                if (mode.equals("html")) {
+                if ("html".equals(mode)) {
                     return Jsoup.parse(o1.toString());
-                } else if (mode.equals("xml")) {
+                } else if ("xml".equals(mode)) {
                     return Jsoup.parse(o1.toString(), "", Parser.xmlParser());
                 } else {
                     // parser to use");

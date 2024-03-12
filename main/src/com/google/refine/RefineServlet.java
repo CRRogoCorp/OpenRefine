@@ -106,10 +106,10 @@ public class RefineServlet extends Butterfly {
         VERSION = getInitParameter("refine.version");
         REVISION = getInitParameter("refine.revision");
 
-        if (VERSION.equals("$VERSION")) {
+        if ("$VERSION".equals(VERSION)) {
             VERSION = ASSIGNED_VERSION;
         }
-        if (REVISION.equals("$REVISION")) {
+        if ("$REVISION".equals(REVISION)) {
             ClassLoader classLoader = getClass().getClassLoader();
             try {
                 InputStream gitStats = classLoader.getResourceAsStream("git.properties");
