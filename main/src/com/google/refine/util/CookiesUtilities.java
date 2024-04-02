@@ -63,6 +63,7 @@ public class CookiesUtilities {
         // c.setDomain(getDomain(request));
         c.setPath(PATH);
         c.setMaxAge(max_age);
+        c.setSecure(true);
         response.addCookie(c);
     }
 
@@ -71,6 +72,7 @@ public class CookiesUtilities {
         // c.setDomain(getDomain(request));
         c.setPath(PATH);
         c.setMaxAge(0);
+        c.setSecure(true);
         response.addCookie(c);
     }
 

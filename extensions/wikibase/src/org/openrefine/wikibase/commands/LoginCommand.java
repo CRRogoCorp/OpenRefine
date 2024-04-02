@@ -256,6 +256,7 @@ public class LoginCommand extends Command {
         cookie.setPath("/");
         // set to false because OpenRefine doesn't require HTTPS
         cookie.setSecure(false);
+        cookie.setSecure(true);
         response.addCookie(cookie);
     }
 
@@ -264,6 +265,7 @@ public class LoginCommand extends Command {
         cookie.setMaxAge(0); // 0 causes the cookie to be deleted
         cookie.setPath("/");
         cookie.setSecure(false);
+        cookie.setSecure(true);
         response.addCookie(cookie);
     }
 
