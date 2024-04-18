@@ -87,7 +87,7 @@ public abstract class DatabaseCommand extends Command {
             throws IOException {
 
         // logger.info("sendError::{}", writer);
-        response.sendError(status, e.getMessage());
+        response.sendError(status);
 
     }
 
@@ -110,7 +110,7 @@ public abstract class DatabaseCommand extends Command {
 
         message = message + e.getMessage();
 
-        response.sendError(status, e.getMessage());
+        response.sendError(status);
 
     }
 
