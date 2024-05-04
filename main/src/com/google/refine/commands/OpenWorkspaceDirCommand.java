@@ -33,6 +33,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine.commands;
 
+import io.github.pixee.security.SystemCommand;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -66,10 +67,7 @@ public class OpenWorkspaceDirCommand extends Command {
                 Desktop desktop = Desktop.getDesktop();
                 desktop.open(dir);
             } else /* if Mac */ {
-                Runtime.getRuntime().exec(
-                        "open .",
-                        new String[] {},
-                        dir);
+                SystemCommand.runCommand(Runtime.getRuntime(), "open .", new String[] {}, dir);
             }
 
             respond(response, "{ \"code\" : \"ok\" }");
