@@ -60,18 +60,20 @@ public class CookiesUtilities {
 
     public static void setCookie(HttpServletRequest request, HttpServletResponse response, String name, String value, int max_age) {
         Cookie c = new Cookie(name, value);
-        // c.setDomain(getDomain(request));
         c.setPath(PATH);
         c.setMaxAge(max_age);
+        c.setSecure(true);
         response.addCookie(c);
+
     }
 
     public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
         Cookie c = new Cookie(name, "");
-        // c.setDomain(getDomain(request));
         c.setPath(PATH);
         c.setMaxAge(0);
+        c.setSecure(true);
         response.addCookie(c);
+
     }
 
     public static String getDomain(HttpServletRequest request) {
