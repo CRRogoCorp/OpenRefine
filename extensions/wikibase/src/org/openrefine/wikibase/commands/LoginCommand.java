@@ -256,6 +256,7 @@ public class LoginCommand extends Command {
         cookie.setPath("/");
         cookie.setSecure(false);
         cookie.setSecure(true);
+        cookie.setSecure(true);
         response.addCookie(cookie);
 
     }

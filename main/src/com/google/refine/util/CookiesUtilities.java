@@ -63,6 +63,7 @@ public class CookiesUtilities {
         c.setPath(PATH);
         c.setMaxAge(max_age);
         c.setSecure(true);
+        c.setSecure(true);
         response.addCookie(c);
 
     }
