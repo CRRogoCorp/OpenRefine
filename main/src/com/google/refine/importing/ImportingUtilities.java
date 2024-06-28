@@ -247,7 +247,7 @@ public class ImportingUtilities {
 
             String name = fileItem.getFieldName().toLowerCase();
             if (fileItem.isFormField()) {
-                if (name.equals("clipboard")) {
+                if ("clipboard".equals(name)) {
                     String encoding = request.getCharacterEncoding();
                     if (encoding == null) {
                         encoding = "UTF-8";
@@ -271,7 +271,7 @@ public class ImportingUtilities {
 
                     clipboardCount++;
 
-                } else if (name.equals("download")) {
+                } else if ("download".equals(name)) {
                     String urlString = Streams.asString(stream);
                     URL url = Urls.create(urlString, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
