@@ -116,7 +116,7 @@ public class ImportProjectCommand extends Command {
             String name = item.getFieldName().toLowerCase();
             InputStream stream = item.openStream();
             if (item.isFormField()) {
-                if (name.equals("url")) {
+                if ("url".equals(name)) {
                     url = Streams.asString(stream);
                 } else {
                     options.put(name, Streams.asString(stream));
