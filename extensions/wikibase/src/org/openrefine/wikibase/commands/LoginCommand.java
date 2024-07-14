@@ -252,18 +252,20 @@ public class LoginCommand extends Command {
     private static void setCookie(HttpServletResponse response, String key, String value) throws UnsupportedEncodingException {
         String encodedValue = URLEncoder.encode(value, "utf-8");
         Cookie cookie = new Cookie(key, encodedValue);
-        cookie.setMaxAge(60 * 60 * 24 * 365); // a year
+        cookie.setMaxAge(60 * 60 * 24 * 365);
         cookie.setPath("/");
-        // set to false because OpenRefine doesn't require HTTPS
         cookie.setSecure(false);
+        cookie.setSecure(true);
         response.addCookie(cookie);
+
     }
 
     private static void removeCookie(HttpServletResponse response, String key) {
         Cookie cookie = new Cookie(key, "");
-        cookie.setMaxAge(0); // 0 causes the cookie to be deleted
+        cookie.setMaxAge(0);
         cookie.setPath("/");
         cookie.setSecure(false);
+        cookie.setSecure(true);
         response.addCookie(cookie);
     }
 
