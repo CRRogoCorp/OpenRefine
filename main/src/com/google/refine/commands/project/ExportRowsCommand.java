@@ -138,7 +138,7 @@ public class ExportRowsCommand extends Command {
             // Use generic error handling rather than our JSON handling
             logger.info("error:{}", e.getMessage());
             if (e instanceof SqlExporterException) {
-                response.sendError(HttpStatus.SC_BAD_REQUEST, e.getMessage());
+                response.sendError(HttpStatus.SC_BAD_REQUEST);
             }
             throw new ServletException(e);
         } finally {
