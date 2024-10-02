@@ -27,6 +27,7 @@
 
 package com.google.refine.importers;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -74,7 +75,7 @@ public class TextFormatGuesser implements FormatGuesser {
                 boolean foundFirstChar = false;
 
                 String line;
-                while ((line = reader.readLine()) != null && controls < CONTROLS_THRESHOLD) {
+                while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null && controls < CONTROLS_THRESHOLD) {
                     line = CharMatcher.whitespace().trimFrom(line);
                     controls += CharMatcher.javaIsoControl().and(CharMatcher.whitespace().negate()).countIn(line);
                     openBraces += line.chars().filter(ch -> ch == '{').count();
