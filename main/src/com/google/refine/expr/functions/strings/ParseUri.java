@@ -8,6 +8,8 @@ import com.google.refine.grel.EvalErrorMessage;
 import com.google.refine.grel.Function;
 import com.google.refine.grel.FunctionDescription;
 import com.google.refine.util.ParsingUtilities;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -27,7 +29,7 @@ public class ParseUri implements Function {
         if (args.length == 1 && args[0] instanceof String) {
             String s = (String) args[0];
             try {
-                URL url = new URL(s);
+                URL url = Urls.create(s, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 URI uri = url.toURI();
 
                 // qp represents the query parameters as a single string in the fragment

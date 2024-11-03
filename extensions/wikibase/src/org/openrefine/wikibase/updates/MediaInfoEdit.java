@@ -1,6 +1,8 @@
 
 package org.openrefine.wikibase.updates;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -242,7 +244,7 @@ public class MediaInfoEdit extends LabeledStatementEntityEdit {
         if (path.exists()) {
             response = mediaFileUtils.uploadLocalFile(path, fileName, wikitext, summary, tags);
         } else {
-            URL url = new URL(filePath);
+            URL url = Urls.create(filePath, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             response = mediaFileUtils.uploadRemoteFile(url, fileName, wikitext, summary, tags);
         }
 

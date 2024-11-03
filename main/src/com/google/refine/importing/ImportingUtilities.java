@@ -33,6 +33,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.google.refine.importing;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -271,7 +273,7 @@ public class ImportingUtilities {
 
                 } else if (name.equals("download")) {
                     String urlString = Streams.asString(stream);
-                    URL url = new URL(urlString);
+                    URL url = Urls.create(urlString, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
                     if (!allowedProtocols.contains(url.getProtocol().toLowerCase())) {
                         throw new IOException("Unsupported protocol: " + url.getProtocol());
@@ -285,7 +287,7 @@ public class ImportingUtilities {
                         Result result = rewriter.rewrite(urlString);
                         if (result != null) {
                             urlString = result.rewrittenUrl;
-                            url = new URL(urlString);
+                            url = Urls.create(urlString, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
                             JSONUtilities.safePut(fileRecord, "url", urlString);
                             JSONUtilities.safePut(fileRecord, "format", result.format);

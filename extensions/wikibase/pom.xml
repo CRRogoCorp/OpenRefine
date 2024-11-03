@@ -150,8 +150,11 @@
       <version>${log4j.version}</version>
       <scope>test</scope>
     </dependency>
-
-  </dependencies>
+  <dependency>
+   <groupId>io.github.pixee</groupId>
+   <artifactId>java-security-toolkit</artifactId>
+  </dependency>
+ </dependencies>
 
 </project>
 
